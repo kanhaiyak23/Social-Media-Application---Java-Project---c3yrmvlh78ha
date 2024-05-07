@@ -23,14 +23,17 @@ public class PostController {
         postService = getPostService();
     }
 
+    @SuppressWarnings("null")
     @GetMapping("")
     public ModelAndView readPosts() {
         ModelAndView modelAndView = new ModelAndView();
         ResponseEntity<?> responseEntity = postService.readPosts();
 
         PostResponseList postResponseList = (PostResponseList) responseEntity.getBody();
+        
         List<PostResponse> postResponses = postResponseList.getPostResponseList();
 
+        
         modelAndView.addObject("postList", postResponses);
         modelAndView.setViewName("post-list");
 
