@@ -9,6 +9,8 @@ public class Post {
     private LocalDateTime createdAt;
     private int likeCount;
     private int unlikeCount;
+
+
     //constructor
     public Post(String content) {
         this.postId = id++;
@@ -18,6 +20,7 @@ public class Post {
         this.unlikeCount = 0;
     }
     public int getPostId() {
+        System.out.println(postId);
         return postId;
     }
     public void setPostId(int postId) {
@@ -49,4 +52,13 @@ public class Post {
     }
 
    
+
+   
+
+
+   
 }
+
+
+    
+

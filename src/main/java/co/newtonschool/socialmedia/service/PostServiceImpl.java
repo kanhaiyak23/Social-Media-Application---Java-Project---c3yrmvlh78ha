@@ -6,7 +6,11 @@ import co.newtonschool.socialmedia.request.PostRequest;
 import co.newtonschool.socialmedia.response.GenericResponse;
 import co.newtonschool.socialmedia.response.PostResponse;
 import co.newtonschool.socialmedia.response.PostResponseList;
+
+// import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+// import org.springframework.web.bind.annotation.DeleteMapping;
+// import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,4 +79,34 @@ public class PostServiceImpl implements PostService {
 
         return ResponseEntity.ok(new GenericResponse("Unliked"));
     }
+//     public ResponseEntity<?> editPost(int postId, String updatedContent) {
+//         Post post = postRepository.getPostById(postId);
+//         post.setContent(updatedContent);
+//         postRepository.savePost(post);
+//         return ResponseEntity.ok(new GenericResponse("Post Updated Successfully"));
+//     }
+//     public ResponseEntity<?> deletePost(int postId) {
+//     Post post = postRepository.getPostById(postId);
+//     if (post == null) {
+//         return ResponseEntity.status(HttpStatus.NOT_FOUND)
+//             .body(new GenericResponse("Post not found"));
+//     }
+
+//     postRepository.deletePost(postId);
+
+//     return ResponseEntity.ok(new GenericResponse("Post deleted successfully"));
+// }
+public ResponseEntity<?> deletePost(int postId) {
+    Post post = postRepository.getPostById(postId);
+
+    if (post != null) {
+        postRepository.deletePost(postId);
+        return ResponseEntity.ok(new GenericResponse("Post deleted"));
+    } else {
+        return ResponseEntity.notFound().build();
+    }
+}
+
+
+
 }

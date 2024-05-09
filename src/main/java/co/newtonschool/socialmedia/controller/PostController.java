@@ -9,9 +9,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import java.util.List;
 
 import static co.newtonschool.socialmedia.SocialMediaApplication.getPostService;
+
 
 @RestController
 @RequestMapping("/posts")
@@ -65,4 +67,28 @@ public class PostController {
     public ResponseEntity<?> unlikePost(@PathVariable("postId") int postId) {
         return postService.unlikePost(postId);
     }
+    // @PostMapping("/{postId}/edit")
+    // public ModelAndView editPost(@PathVariable("postId") int postId, String updatedContent) {
+    //     postService.editPost(postId, updatedContent);
+    //     return new ModelAndView("redirect:/posts");
+    // }
+    // @PostMapping("/{postId}")
+    // public ResponseEntity<?> deletePost(@PathVariable("postId") int postId) {
+    //     postService.deletePost(postId);
+    //     return postService.deletePost(postId);
+    // }
+    // // @PostMapping("/user")
+    // // public ResponseEntity<?> getUserPosts() {
+    // //     return postService.readPosts();
+    // // }
+    // private PostService postService;
+
+    @DeleteMapping("/posts/{postId}")
+    public ResponseEntity<?> deletePost(@PathVariable("postId") int postId) {
+        return postService.deletePost(postId);
+    }
+    
+    
+    
+    
 }

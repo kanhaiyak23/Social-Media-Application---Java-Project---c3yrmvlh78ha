@@ -28,4 +28,13 @@ public class PostRepository {
 
         return postList;
     }
+    // public void deletePost(int postId) {
+    //     postMapById.remove(postId);
+    // }
+     public void editPost(int postId, String updatedContent) {
+         postMapById.get(postId).setContent(updatedContent);
+     }
+     public void deletePost(int postId) {
+         postMapById.remove(postId);
+     }
 }
