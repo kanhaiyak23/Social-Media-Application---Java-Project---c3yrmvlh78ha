@@ -10,7 +10,7 @@ public class Post {
     private int likeCount;
     private int unlikeCount;
 
-
+    // Represents a post with attributes like postId, content, createdAt, likeCount, and unlikeCount.
     //constructor
     public Post(String content) {
         this.postId = id++;
@@ -20,7 +20,7 @@ public class Post {
         this.unlikeCount = 0;
     }
     public int getPostId() {
-        System.out.println(postId);
+       
         return postId;
     }
     public void setPostId(int postId) {
@@ -50,6 +50,7 @@ public class Post {
     public void setUnlikeCount(int unlikeCount) {
         this.unlikeCount = unlikeCount;
     }
+    
 
    
 

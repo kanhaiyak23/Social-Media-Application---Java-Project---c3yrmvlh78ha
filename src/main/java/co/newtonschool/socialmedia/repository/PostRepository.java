@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+// Simulates data storage for posts using a HashMap. It provides methods to save posts,
+ //retrieve posts by ID, and get a list of all posts.
 public class PostRepository {
     private final Map<Integer, Post> postMapById = new HashMap<>();
 
@@ -37,4 +38,5 @@ public class PostRepository {
      public void deletePost(int postId) {
          postMapById.remove(postId);
      }
+
 }

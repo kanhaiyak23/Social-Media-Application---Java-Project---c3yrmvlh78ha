@@ -11,6 +11,8 @@ import co.newtonschool.socialmedia.response.PostResponseList;
 import org.springframework.http.ResponseEntity;
 // import org.springframework.web.bind.annotation.DeleteMapping;
 // import org.springframework.web.bind.annotation.PathVariable;
+// Implements the PostService interface and provides logic for the defined
+//  methods using the PostRepository to interact with post data.
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,23 +81,7 @@ public class PostServiceImpl implements PostService {
 
         return ResponseEntity.ok(new GenericResponse("Unliked"));
     }
-//     public ResponseEntity<?> editPost(int postId, String updatedContent) {
-//         Post post = postRepository.getPostById(postId);
-//         post.setContent(updatedContent);
-//         postRepository.savePost(post);
-//         return ResponseEntity.ok(new GenericResponse("Post Updated Successfully"));
-//     }
-//     public ResponseEntity<?> deletePost(int postId) {
-//     Post post = postRepository.getPostById(postId);
-//     if (post == null) {
-//         return ResponseEntity.status(HttpStatus.NOT_FOUND)
-//             .body(new GenericResponse("Post not found"));
-//     }
-
-//     postRepository.deletePost(postId);
-
-//     return ResponseEntity.ok(new GenericResponse("Post deleted successfully"));
-// }
+//     
 public ResponseEntity<?> deletePost(int postId) {
     Post post = postRepository.getPostById(postId);
 
@@ -106,7 +92,36 @@ public ResponseEntity<?> deletePost(int postId) {
         return ResponseEntity.notFound().build();
     }
 }
-
-
+public ResponseEntity<?> editPost(int postId, String updatedContent) {
+    Post post = postRepository.getPostById(postId);
+    if (post != null) {
+        post.setContent(updatedContent);
+        postRepository.savePost(post);
+        return ResponseEntity.ok(new GenericResponse("Post updated successfully"));
+    } else {
+        return ResponseEntity.notFound().build();
+    }
+}
+@Override
+    public Post getPostById(int postId) {
+        return postRepository.getPostById(postId);
+    }
+    @Override
+    public ResponseEntity<?> updatePost(int postId, Post post) {
+        // Get the existing post by ID
+        Post existingPost = postRepository.getPostById(postId);
+        
+        if (existingPost != null) {
+            // Update the existing post with new content
+            existingPost.setContent(post.getContent());
+            
+            // Save the updated post
+            postRepository.savePost(existingPost);
+            
+            return ResponseEntity.ok(new GenericResponse("Post updated successfully"));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
 }

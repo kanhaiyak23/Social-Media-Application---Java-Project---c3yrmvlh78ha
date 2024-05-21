@@ -1,5 +1,5 @@
 package co.newtonschool.socialmedia.request;
-
+// Represents the request format for creating a new post
 public class PostRequest {
     private String content;
 

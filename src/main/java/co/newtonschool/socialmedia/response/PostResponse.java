@@ -1,5 +1,5 @@
 package co.newtonschool.socialmedia.response;
-
+// Represents the response format for post data.
 import java.time.LocalDateTime;
 
 public class PostResponse {

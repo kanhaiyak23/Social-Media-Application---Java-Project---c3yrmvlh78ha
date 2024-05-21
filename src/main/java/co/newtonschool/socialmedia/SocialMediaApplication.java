@@ -1,5 +1,6 @@
 package co.newtonschool.socialmedia;
-
+// Sets up the Spring Boot application, initializes the PostRepository and PostService,
+//  and provides methods to get these instances.
 import co.newtonschool.socialmedia.repository.PostRepository;
 import co.newtonschool.socialmedia.service.PostService;
 import co.newtonschool.socialmedia.service.PostServiceImpl;
@@ -38,6 +39,7 @@ public class SocialMediaApplication {
 	public static PostService getPostService() {
 		return postService;
 	}
+	
 	
 	
 }

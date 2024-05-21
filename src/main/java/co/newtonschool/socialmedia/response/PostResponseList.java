@@ -1,5 +1,5 @@
 package co.newtonschool.socialmedia.response;
-
+// Represents a list of PostResponse objects.
 import java.util.List;
 
 public class PostResponseList {

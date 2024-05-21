@@ -73,6 +73,17 @@
             outline: none;
             margin-top: 10px;
         }
+        .edit-button {
+            font-size: 14px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #3498db;
+            color: #fff;
+            cursor: pointer;
+            outline: none;
+            margin-top: 10px;
+        }
     </style>
 </head>
 
@@ -90,6 +101,11 @@
         </div>
         <button th:onclick="'likePost(' + ${post.postId} + ')'" class="like-button">Like</button>
         <button th:onclick="'unlikePost(' + ${post.postId} + ')'" class="unlike-button">Unlike</button>
+        <!-- <button class="action-button" th:onclick="'deletePost(' + ${post.postId} + ')'">Delete</button>
+        <button th:href="@{'/posts/' + ${post.postId} + '/edit'}" class="action-button">Edit</button> -->
+
+
+
     </div>
 </div>
 <div class="button-container">
@@ -136,6 +152,32 @@
                     console.error('Error unliking post:', error);
                 });
         }
+        function deletePost(postId) {
+        fetch(`/posts/${postId}`, {
+            method: "DELETE",
+        })
+        .then(response => {
+            if (response.ok) {
+                // Remove the deleted post element from the UI
+                const postElement = document.getElementById(`post-${postId}`);
+                if (postElement) {
+                    postElement.remove();
+                }
+
+                // Optionally, update the UI or refresh the post list
+                fetchPostsAsync(); // Refresh the post list after deletion
+                return response.json();
+            } else {
+                throw new Error('Failed to delete post');
+            }
+        })
+        .then(data => {
+            console.log("Post deleted successfully:", data);
+        })
+        .catch(error => {
+            console.error('Error deleting post:', error);
+        });
+    }
 
     </script>
 </body>
